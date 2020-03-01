@@ -1,5 +1,8 @@
 #!/bin/bash
-echo "usage: ./tflite2pb.sh xxx.tflite"
+if [ -z "$1" ]; then
+    echo "usage: $0 xxx.tflite"
+    exit
+fi
 name=`echo $1 | cut -d '.' -f 1`
 name=$name.pb
 ncc -i tflite -o tf $1 $name
